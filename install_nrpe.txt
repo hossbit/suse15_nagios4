@@ -20,7 +20,7 @@ make install-init
 systemctl start nrpe
 systemctl enable nrpe
 
-## Edit nrpe config file
+## Edit nrpe config file( Find this line and change it )
 vi /usr/local/nagios/etc/nrpe.cfg
 server_address= nagios ip
 allowed_hosts=127.0.0.1,nagios ip

@@ -1,0 +1,34 @@
+## Add repositories From DVD or SUSE online repositories
+zypper addrepo /repo/SUSE/Products/SLE-Module-Web-Scripting/15-SP1/x86_64/product/
+zypper addrepo /SUSE/Products/SLE-Module-Basesystem/15-SP1/x86_64/product/
+zypper addrepo /repo/SUSE/Products/SLE-Module-Development-Tools/15-SP1/x86_64/product/
+zypper addrepo /repo/SUSE/Products/SLE-Module-Server-Applications/15-SP1/x86_64/product/
+
+## Install Packages
+sudo zypper install -y glibc-32bit libasan4 libatomic1 libcilkrts5 libitm1 liblsan0 libmpx2 libmpxwrappers2 libtsan0 libubsan0 linux-glibc-devel libgcc_s1-32bit libitm1-32bit glibc-devel libstdc++6-32bit libstdc++6-devel-gcc7 gcc7 gcc7-c++ gcc gcc-c++ libgomp1-32bit libmpx2-32bit libmpxwrappers2-32bit glibc-devel-32bit libasan4-32bit libatomic1-32bit libcilkrts5-32bit libubsan0-32bit libstdc++6-devel-gcc7-32bit gcc-32bit gcc-c++-32bit gcc7-32bit gcc7-c++-32bit
+sudo zypper install -y libopenssl-1_1-devel libopenssl1_1-32bit libz1-32bit zlib-devel
+
+## Install nrpe-4.x
+tar -xf nrpe-4.0.3.tar.gz
+./configure --enable-command-args --with-nrpe-user=nagios --with-nrpe-group=nagios
+make install-groups-users
+make all
+make install
+make install-config
+make install-init
+systemctl start nrpe
+systemctl enable nrpe
+
+## Edit nrpe config file
+vi /usr/local/nagios/etc/nrpe.cfg
+server_address= nagios ip
+allowed_hosts=127.0.0.1,nagios ip
+dont_blame_nrpe=1
+
+systemctl restart nrpe
+
+## Install nagios plugins
+tar xf nagios-plugins-2.3.3.tar.gz
+./configure
+make
+make install

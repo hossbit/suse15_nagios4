@@ -1,0 +1,38 @@
+## Add repositories From DVD or SUSE online repositories( You must edit this line )
+zypper addrepo  /repo/SUSE/Products/SLE-Module-Web-Scripting/15-SP1/x86_64/product/
+zypper addrepo  /repo/SUSE/Products/SLE-Module-Basesystem/15-SP1/x86_64/product/
+zypper addrepo  /repo/SUSE/Products/SLE-Module-Development-Tools/15-SP1/x86_64/product/
+zypper addrepo  /repo/SUSE/Products/SLE-Module-Server-Applications/15-SP1/x86_64/product/
+zypper refresh
+
+## Install Packages
+zypper install apache2 php7 apache2-mod_php7
+zypper install gcc
+
+## Install nagios 4.x
+tar xf nagios-4.4.6.tar.gz
+tar xf nagios-plugins-2.3.3.tar.gz
+useradd nagios
+groupadd nagios
+groupadd nagcmd
+usermod -a -G nagcmd nagios
+usermod -a -G nagcmd wwwrun
+./configure --with-nagios-group=nagios --with-command-group=nagcmd
+make all
+make install
+make install-init
+make install-config
+make install-commandmode
+make install-webconf
+a2enmod version
+a2enmod php7
+
+# Edit apache config file ( Find this line and change it )
+vi /etc/apache2/httpd.conf
+DirectoryIndex index.html index.html.var index.php
+
+## Add user for nagios
+htpasswd2 -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+service nagios start
+service apache2 restart

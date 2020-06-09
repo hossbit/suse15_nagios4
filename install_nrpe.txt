@@ -1,8 +1,9 @@
-## Add repositories From DVD or SUSE online repositories
+## Add repositories From DVD or SUSE online repositories ( You must edit this line )
 zypper addrepo /repo/SUSE/Products/SLE-Module-Web-Scripting/15-SP1/x86_64/product/
 zypper addrepo /SUSE/Products/SLE-Module-Basesystem/15-SP1/x86_64/product/
 zypper addrepo /repo/SUSE/Products/SLE-Module-Development-Tools/15-SP1/x86_64/product/
 zypper addrepo /repo/SUSE/Products/SLE-Module-Server-Applications/15-SP1/x86_64/product/
+zypper refresh
 
 ## Install Packages
 sudo zypper install -y glibc-32bit libasan4 libatomic1 libcilkrts5 libitm1 liblsan0 libmpx2 libmpxwrappers2 libtsan0 libubsan0 linux-glibc-devel libgcc_s1-32bit libitm1-32bit glibc-devel libstdc++6-32bit libstdc++6-devel-gcc7 gcc7 gcc7-c++ gcc gcc-c++ libgomp1-32bit libmpx2-32bit libmpxwrappers2-32bit glibc-devel-32bit libasan4-32bit libatomic1-32bit libcilkrts5-32bit libubsan0-32bit libstdc++6-devel-gcc7-32bit gcc-32bit gcc-c++-32bit gcc7-32bit gcc7-c++-32bit

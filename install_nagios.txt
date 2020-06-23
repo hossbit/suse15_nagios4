@@ -35,5 +35,11 @@ DirectoryIndex index.html index.html.var index.php
 ## Add user for nagios
 htpasswd2 -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
 
+## Install nagios plugins
+cd nagios-plugins-2.3.3
+./configure
+make
+make install
+
 service nagios start
 service apache2 restart

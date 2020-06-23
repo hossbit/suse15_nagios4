@@ -11,7 +11,9 @@ sudo zypper install -y libopenssl-1_1-devel libopenssl1_1-32bit libz1-32bit zlib
 
 ## Install nrpe-4.x
 tar -xf nrpe-4.0.3.tar.gz
-./configure --enable-command-args --with-nrpe-user=nagios --with-nrpe-group=nagios
+cd nrpe-4.0.3
+./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib
+ --enable-command-args --with-nrpe-user=nagios --with-nrpe-group=nagios
 make install-groups-users
 make all
 make install

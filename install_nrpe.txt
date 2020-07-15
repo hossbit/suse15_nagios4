@@ -8,12 +8,12 @@ zypper refresh
 ## Install Packages
 sudo zypper install -y glibc-32bit libasan4 libatomic1 libcilkrts5 libitm1 liblsan0 libmpx2 libmpxwrappers2 libtsan0 libubsan0 linux-glibc-devel libgcc_s1-32bit libitm1-32bit glibc-devel libstdc++6-32bit libstdc++6-devel-gcc7 gcc7 gcc7-c++ gcc gcc-c++ libgomp1-32bit libmpx2-32bit libmpxwrappers2-32bit glibc-devel-32bit libasan4-32bit libatomic1-32bit libcilkrts5-32bit libubsan0-32bit libstdc++6-devel-gcc7-32bit gcc-32bit gcc-c++-32bit gcc7-32bit gcc7-c++-32bit
 sudo zypper install -y libopenssl-1_1-devel libopenssl1_1-32bit libz1-32bit zlib-devel
+sudo zypper install bc
 
 ## Install nrpe-4.x
 tar -xf nrpe-4.0.3.tar.gz
 cd nrpe-4.0.3
-./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib
- --enable-command-args --with-nrpe-user=nagios --with-nrpe-group=nagios
+./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib --enable-command-args --with-nrpe-user=nagios --with-nrpe-group=nagios
 make install-groups-users
 make all
 make install

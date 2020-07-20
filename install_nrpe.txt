@@ -13,6 +13,8 @@ sudo zypper install bc
 ## Install nrpe-4.x
 tar -xf nrpe-4.0.3.tar.gz
 cd nrpe-4.0.3
+useradd nagios
+groupadd nagios
 ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib --enable-command-args --with-nrpe-user=nagios --with-nrpe-group=nagios
 make install-groups-users
 make all
@@ -32,6 +34,7 @@ systemctl restart nrpe
 
 ## Install nagios plugins
 tar xf nagios-plugins-2.3.3.tar.gz
+cd nagios-plugins-2.3.3/
 ./configure
 make
 make install
